@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Categorías</title>
+<object th:include="fragmentos :: fragmentoHead" th:remove="tag"></object>
+<object th:insert="fragmentos :: fragmentoDataTableHead"></object>
+</head>
+<body>
+<object th:replace="fragmentos :: menu-superior"></object>
+
+<div class="container">
+
+
+	<div class="row">
+  		<div class="form-group">
+    		<label for="categoria">Selecciona una categoría principal</label>
+    		<select onchange="loadCategoriasSecundarias()" class="form-control" id="categoria">
+      			<option th:each="categoria: ${categorias}" th:value="${categoria.id}" th:text="${categoria.nombre}">1</option>
+    		</select>
+ 		 </div>
+	</div>
+	
+	<div class="row">
+		<label>Categorías secundarias </label>
+		
+			
+			<table id="tablasubcategorias" class="display" style="width: 100%">
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody id="categoriassecundarias">
+				
+				<tr th:each="subcategoria: ${subcategorias}">
+					
+					<td th:text="${subcategoria.nombre}">Tiger Nixon</td>
+					
+					<td>
+					<button type="button" class="btn btn-primary">Editar</button>
+					<button type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+					</td>
+				</tr>
+				
+			</tbody>
+			
+		</table>
+		
+	</div>
+
+</div>
+<object th:replace="fragmentos :: footer-responsive" th:remove="tag"></object>
+<object th:replace="fragmentos :: scriptsBootstrap" th:remove="tag"></object>
+<object th:insert="fragmentos :: scriptsDataTable"></object>
+<script>
+	function loadCategoriasSecundarias() {
+		var url   = window.location.origin  + '/categorias/subcategorias/' + document.getElementById("categoria").value;
+		$.ajax({
+			type: 'GET',
+			url: url,
+			dataType: 'html'
+		}).done(function (respuesta) {
+				$("#categoriassecundarias").html(respuesta);
+			});
+	}
+
+	$(document).ready(function() {
+	    loadCategoriasSecundarias();
+	    $('#tablasubcategorias').DataTable({
+	    	 "paging":   false,
+	         "ordering": false,
+	         "info":     false,
+	         "searching":   false,
+	         "autoWidth":  false,
+	         "columns": [
+	        	    { width: "70%" },
+	        	    { width: "30%" }
+	        	  ]
+	        		         
+		    });
+	});
+	
+</script>
+</body>
+</html>

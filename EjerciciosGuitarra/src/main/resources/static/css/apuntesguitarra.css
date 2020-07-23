@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+legend {
+    padding:0 10px; /* un poco de padding a los lados del legend */
+}
+
+
+
+.navbar {
+   border-radius: 0px;
+}

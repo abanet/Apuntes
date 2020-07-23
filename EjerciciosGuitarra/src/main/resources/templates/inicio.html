@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Apuntes de guitarra</title>
+<object th:include="fragmentos :: fragmentoHead" th:remove="tag"></object>
+</head>
+<body>
+	
+<object th:replace="fragmentos :: menu-superior"></object>
+	
+	<div class="container">
+		<div class="mt-5">
+			<h5>Ejercicios de guitarra para que practiques y sigas tu evolución</h5>
+			<hr>
+			<p class="mb-0">Utilice las opciones disponibles de su menú.</p>
+		</div>
+	</div>
+	<object th:replace="fragmentos :: footer-responsive" th:remove="tag"></object>
+	<object th:replace="fragmentos :: scriptsBootstrap" th:remove="tag"></object>
+	
+</body>
+</html>

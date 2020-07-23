@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Listado de ejercicios</title>
+<object th:include="fragmentos :: fragmentoHead" th:remove="tag"></object>
+<object th:insert="fragmentos :: fragmentoDataTableHead"></object>
+
+</head>
+<body>
+
+	<object th:replace="fragmentos :: menu-superior"></object>
+
+	<div class="container" id="contenedor-general">
+		<div th:if="${mensaje !=null}"
+			class="alert alert-success alert-dismissible fade show" role="alert">
+			<label th:text="${mensaje}"></label>
+			<button type="button" class="close" data-dismiss="alert"
+				aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+
+		<table id="ejercicios" class="display" style="width: 100%">
+			<thead>
+				<tr>
+					<th>Activo</th>
+					<th>Nombre</th>
+					<th>Descripción</th>
+					<th>Youtube</th>
+
+					<th>Creado</th>
+					<th>Modificado</th>
+					<th>Vídeo</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="ejercicio : ${ejercicios}">
+					<td><input type="checkbox" th:value="${ejercicio.activo}" th:checked="${ejercicio.activo}">
+					</td>
+					<td th:text="${ejercicio.nombre}">Tiger Nixon</td>
+					<td th:text="${ejercicio.descripcion}">Tiger Nixon</td>
+					<td th:text="${ejercicio.codigoYoutube}">Tiger Nixon</td>
+
+					<td th:text="${ejercicio.fechaCreacion}">Tiger Nixon</td>
+					<td th:text="${ejercicio.fechaModificacion}">Tiger Nixon</td>
+					<td><iframe width="100" height="100"
+							th:src="'https://www.youtube.com/embed/' + ${ejercicio.codigoYoutube}"
+							allowfullscreen> </iframe></td>
+					<td>
+					<button type="button" class="btn btn-success">Otro</button>
+					<button type="button" class="btn btn-primary">Editar</button>
+					<button type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+					
+					</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<th>Activo</th>
+					<th>Nombre</th>
+					<th>Descripción</th>
+					<th>Youtube</th>
+
+					<th>Creado</th>
+					<th>Modificado</th>
+					<th>Vídeo</th>
+					<th>Acciones</th>
+				</tr>
+			</tfoot>
+		</table>
+
+	</div>
+	<!--  <script th:src="@{/js/jquery-3.5.1.min.js}"></script>
+<script type="text/javascript" charset="utf8" th:src="@{/js/datatables.js}"></script>-->
+	<object th:replace="fragmentos :: footer-responsive" th:remove="tag"></object>
+	<object th:include="fragmentos :: scriptsBootstrap" th:remove="tag"></object>
+	<object th:insert="fragmentos :: scriptsDataTable"></object>
+
+	<script th:inline="javascript" type="text/javascript">
+$(document).ready(function() {
+    $('#ejercicios').DataTable({
+    	select: true,
+		paging: false,
+		searching: true,
+		 "order": [
+			 [ 5, "desc" ]
+		],
+		columnDefs: [{
+            orderable: false,
+            targets: [1,2,3]
+        }],
+		columns: [
+			{"orderable": false},
+			null,
+			{"orderable": false},
+			{"orderable": false},
+			
+			{"orderable": false},
+			null,
+			{"orderable": false}
+		] 
+		 
+    });
+} );
+
+</script>
+</body>
+</html>
