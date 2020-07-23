@@ -12,4 +12,6 @@ public interface SubcategoriaServicio {
 	public List<Subcategoria> findAll();
 	public List<Subcategoria> findByCategoria(Categoria categoria);
 	public void deleteById(Integer id);
+	public void save(Subcategoria subcategoria);
+	
 }

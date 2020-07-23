@@ -61,6 +61,10 @@ public class Categoria implements Serializable {
 	public void setSubcategorias(List<Subcategoria> subcategorias) {
 		this.subcategorias = subcategorias;
 	}
+	
+	public void addSubcategoria(Subcategoria s) {
+		this.subcategorias.add(s);
+	}
 
 	
 }

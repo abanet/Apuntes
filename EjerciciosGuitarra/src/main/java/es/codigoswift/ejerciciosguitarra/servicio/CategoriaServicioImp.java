@@ -31,4 +31,9 @@ public class CategoriaServicioImp implements CategoriaServicio {
 		return categoriaRepositorio.findById(id);
 	}
 
+	@Override
+	public Categoria save(Categoria categoria) {
+		return categoriaRepositorio.save(categoria);
+	}
+
 }

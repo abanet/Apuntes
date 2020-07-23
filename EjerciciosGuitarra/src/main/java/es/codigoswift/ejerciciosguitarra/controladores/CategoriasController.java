@@ -6,12 +6,14 @@ import java.util.Map;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -107,6 +109,22 @@ public class CategoriasController {
 		subcategoriaServicio.deleteById(id);
 		return "redirect:/categorias";
 		
+	}
+	
+	@PostMapping("/subcategorias/add/{idCategoria}/{nombre}")
+	@Transactional
+	public String addSubcategoria(@PathVariable("idCategoria") Integer idCategoria, @PathVariable("nombre") String nombre) {
+		Optional<Categoria> categoria = categoriaServicio.findById(idCategoria);
+		if (categoria.isPresent()) {
+			Subcategoria subcategoria = new Subcategoria();
+			subcategoria.setCategoria(categoria.get());
+			subcategoria.setNombre(nombre);
+			
+			subcategoriaServicio.save(subcategoria);
+			categoria.get().addSubcategoria(subcategoria);
+			categoriaServicio.save(categoria.get());
+		}
+		return "redirect:/categorias";
 	}
 	
 }

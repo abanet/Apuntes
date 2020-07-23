@@ -29,7 +29,7 @@ public class Subcategoria implements Serializable {
 	private String nombre;
 	
 	@OneToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="id")
+	@JoinColumn(name="idCategoria")
 	@JsonIgnore
 	private Categoria categoria;
 

@@ -23,12 +23,22 @@
 	
 	<div class="row">
 		<label>Categorías secundarias </label>
-		
-			
 			<table id="tablasubcategorias" class="display" style="width: 100%">
 			</table>
 		
 	</div>
+	<br/>
+	<div class="row pull-right">
+	<form onSubmit="JavaScript:addSubcategoria()" class="form-inline  pull-right">
+  		<div class="form-group">
+    		<label for="nueva_subcategoria">Añadir subcategoría: </label>
+    		<input type="text" class="form-control" id="nueva_subcategoria" aria-describedby="Nueva subcategoria" placeholder="Nueva subcategoría">
+  		</div>
+  
+  		<button type="submit" class="btn btn-primary">Añadir</button>
+	</form>
+	</div>
+	
 
 </div>
 <object th:replace="fragmentos :: footer-responsive" th:remove="tag"></object>
@@ -65,6 +75,17 @@
 				}
 		})
 		
+	}
+
+	
+	
+	function addSubcategoria() {
+		var url   = window.location.origin  + '/categorias/subcategorias/add/' + 
+			document.getElementById("categoria").value + "/" +
+			document.getElementById("nueva_subcategoria").value;
+		$.post(url, function() {
+			alert("Subcategoria añadida");
+			});
 	}
 	
 	$(document).ready(function() {

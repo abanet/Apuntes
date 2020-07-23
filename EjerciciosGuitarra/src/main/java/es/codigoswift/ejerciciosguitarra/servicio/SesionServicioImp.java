@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 
 import es.codigoswift.ejerciciosguitarra.beans.MenuBean;
 
-
-
 	@Service
 	public class SesionServicioImp implements SesionServicio {
 

@@ -12,4 +12,5 @@ public interface CategoriaServicio {
 	public List<Categoria> findAll();
 	public List<Categoria> findAllByOrderByNombreAsc();
 	public Optional<Categoria> findById(Integer id);
+	public Categoria save(Categoria categoria);
 }

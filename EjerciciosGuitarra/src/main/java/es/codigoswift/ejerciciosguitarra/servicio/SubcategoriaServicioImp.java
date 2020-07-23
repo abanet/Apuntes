@@ -30,4 +30,10 @@ public class SubcategoriaServicioImp implements SubcategoriaServicio{
 		subcategoriaRepositorio.deleteById(id);
 	}
 
+	@Override
+	public void save(Subcategoria subcategoria) {
+		subcategoriaRepositorio.save(subcategoria);
+	}
+
+	
 }

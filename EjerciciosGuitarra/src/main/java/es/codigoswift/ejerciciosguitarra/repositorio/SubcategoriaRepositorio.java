@@ -12,4 +12,5 @@ import es.codigoswift.ejerciciosguitarra.modelo.Subcategoria;
 public interface SubcategoriaRepositorio extends JpaRepository<Subcategoria, Integer> {
 	public List<Subcategoria> findByCategoria(Categoria categoria);
 	public void deleteById(Integer id);
+	
 }
